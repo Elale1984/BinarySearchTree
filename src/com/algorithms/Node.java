@@ -1,10 +1,12 @@
 package com.algorithms;
 
-public class Node<T> {
 
-    private T data;
-    private Node<T> right;
-    private Node<T> left;
+public class Node<T extends Comparable<T>> {
+
+    T data;
+    Node<T> right;
+    Node<T> left;
+    int counter = 0;
 
     public Node(T data) {
         this.data = data;
@@ -12,7 +14,14 @@ public class Node<T> {
         this.left = null;
     }
 
-    public void printData(Node<T> node){
-        System.out.println(this.data + " ");
+    public void printData(){
+        counter++;
+        if(counter % 10 == 0){
+            System.out.println();
+        }
+        else
+            System.out.print(this.data + ", ");
+
+
     }
 }
