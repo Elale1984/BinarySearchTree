@@ -15,11 +15,7 @@ public class Node<T extends Comparable<T>> {
     }
 
     public void printData(){
-        counter++;
-        if(counter % 10 == 0){
-            System.out.println();
-        }
-        else
+
             System.out.print(this.data + ", ");
 
 

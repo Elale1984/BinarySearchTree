@@ -24,7 +24,34 @@ public class Main {
         System.out.println("\n in Order Traversal");
         binaryTree.inOrderTraversal(binaryTree.root);
 
-        searchForWords(binaryTree);
+        //searchForWords(binaryTree);
+        removeFromWords(binaryTree);
+
+    }
+
+    private static void removeFromWords(BinaryTree<String> binaryTree) {
+        boolean endAll = false;
+        Scanner Reader = new Scanner(System.in);
+        do {
+            System.out.print("\n Enter a word to remove or -1 to quit: ");
+            String word = Reader.next();
+
+            if(Objects.equals(word, "-1")){
+                endAll = true;
+            }
+            else {
+
+                System.out.println("Deleting " + word);
+
+                binaryTree.removeFromTree(word);
+
+                System.out.println("");
+                binaryTree.inOrderTraversal(binaryTree.root);
+            }
+
+        } while (!endAll);
+
+        Reader.close();
 
     }
 
