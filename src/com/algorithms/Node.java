@@ -14,14 +14,9 @@ public class Node<T extends Comparable<T>> {
         this.left = null;
     }
 
-    public void printData(){
-        counter++;
-        if(counter % 10 == 0){
-            System.out.println();
-        }
-        else
-            System.out.print(this.data + ", ");
-
-
+    public void printData() {
+        System.out.print(this.data + ", ");
     }
+
+
 }

@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
-
+        Scanner reader = new Scanner(System.in);
         BinaryTree<String> binaryTree = new BinaryTree();
         Scanner read = new Scanner(new File("input.txt"));
 
@@ -24,16 +24,43 @@ public class Main {
         System.out.println("\n in Order Traversal");
         binaryTree.inOrderTraversal(binaryTree.root);
 
-        searchForWords(binaryTree);
+        binaryTree.preOrderTraversal(binaryTree.root);
+        searchForWords(binaryTree, reader);
+        removeFromWords(binaryTree, reader);
 
     }
 
-    public static void searchForWords(BinaryTree<String> binaryTree){
+    private static void removeFromWords(BinaryTree<String> binaryTree, Scanner reader) {
         boolean endAll = false;
-        Scanner UI = new Scanner(System.in);
+
+        do {
+            System.out.print("\n Enter a word to remove or -1 to quit: ");
+            String word = reader.next();
+
+            if(word.equals("-1")){
+                endAll = true;
+            }
+            else {
+
+                System.out.println("Deleting " + word);
+
+                binaryTree.removeFromTree(word);
+
+                System.out.println("");
+                binaryTree.inOrderTraversal(binaryTree.root);
+                System.out.println("Still BST = " + binaryTree.isBST(binaryTree.root));
+            }
+
+        } while (!endAll);
+
+
+    }
+
+    public static void searchForWords(BinaryTree<String> binaryTree, Scanner reader){
+        boolean endAll = false;
         do {
             System.out.print("\n Enter a word to search for or -1 to quit: ");
-            String word = UI.next();
+            String word = reader.next();
 
             if(Objects.equals(word, "-1")){
                 endAll = true;
@@ -45,6 +72,8 @@ public class Main {
 
         } while (!endAll);
 
-        UI.close();
+
     }
+
+
 }
