@@ -51,7 +51,6 @@ public class BinaryTree<T extends Comparable<T>> {
         else
             System.out.println(data + " Not found in tree");
     }
-    // Get minimum element in binary search tree
     public Node<T> minimumElement(Node<T> root) {
         if (root.left == null)
             return root;
@@ -69,26 +68,18 @@ public class BinaryTree<T extends Comparable<T>> {
             node.right = removeFromTree(node.right, data);
 
         } else {
-            // if nodeToBeDeleted have both children
             if (node.left != null && node.right != null) {
-                Node<T> temp = node;
-                // Finding minimum element from right
-                Node<T> minNodeForRight = minimumElement(temp.right);
-                // Replacing current node with minimum node from right subtree
+                Node<T> minNodeForRight = minimumElement(node.right);
                 node.data = minNodeForRight.data;
-                // Deleting minimum node from right now
                 node.right = removeFromTree(node.right, minNodeForRight.data);
 
             }
-            // if nodeToBeDeleted has only left child
             else if (node.left != null) {
                 node = node.left;
             }
-            // if nodeToBeDeleted has only right child
             else if (node.right != null) {
                 node = node.right;
             }
-            // if nodeToBeDeleted do not have child (Leaf node)
             else
                 node = null;
         }
@@ -113,24 +104,17 @@ public class BinaryTree<T extends Comparable<T>> {
         }
     }
 
-    boolean isBST(Node node)
+    boolean isBST(Node<T> node)
     {
         if (node == null)
             return true;
 
-        /* False if left is > than node */
         if (node.left != null && node.left.data.compareTo(node.data) > 0)
             return false;
 
-        /* False if right is < than node */
         if (node.right != null && node.right.data.compareTo(node.data) < 0)
             return false;
 
-        /* False if, recursively, the left or right is not a BST */
-        if (!isBST(node.left) || !isBST(node.right))
-            return false;
-
-        /* Passing all that, it's a BST */
-        return true;
+        return isBST(node.left) && isBST(node.right);
     }
 }

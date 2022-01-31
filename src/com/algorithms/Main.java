@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
         Scanner reader = new Scanner(System.in);
-        BinaryTree<String> binaryTree = new BinaryTree();
+        BinaryTree<String> binaryTree = new BinaryTree<>();
         Scanner read = new Scanner(new File("input.txt"));
 
         while (read.hasNext()){
@@ -46,7 +46,7 @@ public class Main {
 
                 binaryTree.removeFromTree(word);
 
-                System.out.println("");
+                System.out.println();
                 binaryTree.inOrderTraversal(binaryTree.root);
                 System.out.println("Still BST = " + binaryTree.isBST(binaryTree.root));
             }
@@ -67,7 +67,7 @@ public class Main {
             }
             else {
                 System.out.println("The number of elements till the word was found was " + binaryTree.findInTree(word));
-                System.out.println("");
+                System.out.println();
             }
 
         } while (!endAll);
